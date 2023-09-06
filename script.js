@@ -17,6 +17,25 @@ if (navigator.geolocation) {
       const { latitude } = position.coords;
       const { longitude } = position.coords;
       console.log(`https://www.google.com.br/maps/@${latitude},${longitude}`);
+
+      const coords = [latitude, longitude];
+
+      const map = L.map('map').setView(coords, 13);
+
+      L.tileLayer(
+        'https://tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token=UoaB8Rdi9wVrUjzmE1vjgF0omLO0V6e4rGqhuuR6PasosYgHBVxAMiMLukMTS47o',
+        {}
+      ).addTo(map);
+      map.attributionControl
+        .addAttribution(
+          '<a href="https://www.jawg.io" target="_blank">&copy; Jawg</a> - <a href="https://www.openstreetmap.org" target="_blank">&copy; OpenStreetMap</a>&nbsp;contributors'
+        )
+        .addTo(map);
+
+      L.marker(coords)
+        .addTo(map)
+        .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+        .openPopup();
     },
     function () {
       alert('Could not get your position!');

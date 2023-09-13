@@ -116,19 +116,25 @@ class App {
     //get data from form
     const type = inputType.value;
     const distance = +inputDistance.value;
-    const duraetion = +inputDuration.value;
+    const duration = +inputDuration.value;
 
     //if workout running, create running object
     if (type === 'running') {
       const cadence = +inputCadence.value;
       //check if data is valid
-      if (!Number.isFinite(distance))
+      if (
+        !Number.isFinite(distance) ||
+        !Number.isFinite(duration) ||
+        !Number.isFinite(cadence)
+      )
         return alert('Inputs have to be positive numbers!');
     }
 
     //if workout cycling, create cycling object
     if (type === 'cycling') {
       const elevation = +inputElevation.value;
+      if (!Number.isFinite(distance))
+        return alert('Inputs have to be positive numbers!');
     }
 
     //clear input fields

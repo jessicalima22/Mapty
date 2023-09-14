@@ -111,6 +111,9 @@ class App {
     inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
   }
   _newWorkout(e) {
+    const validInputs = (...inputs) => {
+      inputs.every(inp => Number.isFinite(inp));
+    };
     e.preventDefault();
 
     //get data from form
@@ -122,11 +125,7 @@ class App {
     if (type === 'running') {
       const cadence = +inputCadence.value;
       //check if data is valid
-      if (
-        !Number.isFinite(distance) ||
-        !Number.isFinite(duration) ||
-        !Number.isFinite(cadence)
-      )
+      if (!validInputs(distance, duration, cadence))
         return alert('Inputs have to be positive numbers!');
     }
 

@@ -130,10 +130,11 @@ class App {
       if (
         !validInputs(distance, duration, cadence) /*||
         !allPositive(distance, duration, cadence)*/
-      )
+      ) {
         console.log(validInputs(distance, duration, cadence));
-      console.log(allPositive(distance, duration));
-      return alert('Inputs have to be positive numbers!');
+        //console.log(allPositive(distance, duration));
+        return alert('Inputs have to be positive numbers!');
+      }
       const workout = new Running(this.#mapEvent.latlng);
     }
 

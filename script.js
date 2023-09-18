@@ -111,12 +111,8 @@ class App {
     inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
   }
   _newWorkout(e) {
-    const validInputs = (...inputs) => {
-      inputs.every(function (inp) {
-        Number.isFinite(inp);
-        console.log(inp, Number.isFinite(inp));
-      });
-    };
+    const validInputs = (...inputs) =>
+      inputs.every(inp => Number.isFinite(inp));
 
     const allPositive = (...inputs) => inputs.every(inp => inp > 0);
     e.preventDefault();
@@ -132,10 +128,11 @@ class App {
       console.log(distance);
       //check if data is valid
       if (
-        validInputs(distance, duration, cadence) /*||
+        !validInputs(distance, duration, cadence) /*||
         !allPositive(distance, duration, cadence)*/
       )
         console.log(validInputs(distance, duration, cadence));
+      console.log(allPositive(distance, duration));
       return alert('Inputs have to be positive numbers!');
       const workout = new Running(this.#mapEvent.latlng);
     }

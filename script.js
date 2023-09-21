@@ -69,6 +69,7 @@ console.log(run1, cycling1);
 //APPLICATION
 class App {
   #map;
+  #mapZoomLevel = 13;
   #mapEvent;
   #workouts = [];
   constructor() {
@@ -94,7 +95,7 @@ class App {
 
     const coords = [latitude, longitude];
 
-    this.#map = L.map('map').setView(coords, 13);
+    this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
 
     L.tileLayer(
       'https://tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token=UoaB8Rdi9wVrUjzmE1vjgF0omLO0V6e4rGqhuuR6PasosYgHBVxAMiMLukMTS47o',
@@ -262,6 +263,13 @@ class App {
       work => work.id === workoutEl.dataset.id
     );
     console.log(workout);
+
+    this.#map.setView(workout.coords, this.#mapZoomLevel, {
+      animate: true,
+      pan: {
+        duration: 1,
+      },
+    });
   }
 }
 

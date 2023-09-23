@@ -191,6 +191,10 @@ class App {
 
     //render workout on list
     this._renderWorkout(workout);
+
+    //
+
+    this, setLOcalStorage();
   }
 
   _renderWorkoutMarker(workout) {

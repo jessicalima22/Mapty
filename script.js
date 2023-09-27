@@ -297,6 +297,9 @@ class App {
   _getLocalStorage() {
     const data = localStorage.getItem('workout');
     console.log(data);
+
+    if (!data) return;
+    this.#workouts = data;
   }
 }
 

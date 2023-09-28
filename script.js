@@ -124,6 +124,10 @@ class App {
       .openPopup();*/
 
     this.#map.on('click', this._showForm.bind(this));
+
+    this.#workouts.forEach(work => {
+      this._renderWorkoutMarker(work);
+    });
   }
   _showForm(mapE) {
     this.#mapEvent = mapE;
@@ -137,9 +141,9 @@ class App {
       inputDuration.value =
       inputElevation.value =
         '';
-    form.computedStyleMap.display = 'none';
+    form.style.display = 'none';
     form.classList.add('hidden');
-    setTimeout(() => (form.computedStyleMap.display = 'grid'), 1000);
+    setTimeout(() => (form.style.display = 'grid'), 1000);
   }
   _toggleElevationField() {
     inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
@@ -295,11 +299,15 @@ class App {
   }
 
   _getLocalStorage() {
-    const data = localStorage.getItem('workout');
-    console.log(data);
+    const data = JSON.parse(localStorage.getItem('workouts'));
 
     if (!data) return;
+
     this.#workouts = data;
+
+    this.#workouts.forEach(work => {
+      this._renderWorkout(work);
+    });
   }
 }
 

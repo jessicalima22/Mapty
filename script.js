@@ -291,7 +291,7 @@ class App {
 
     //using the public interface
 
-    workout.click();
+    //workout.click();
   }
 
   _setLocalStorage() {
@@ -302,7 +302,7 @@ class App {
     const data = JSON.parse(localStorage.getItem('workouts'));
 
     if (!data) return;
-
+    console.log(data);
     this.#workouts = data;
 
     this.#workouts.forEach(work => {

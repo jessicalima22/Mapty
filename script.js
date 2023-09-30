@@ -68,7 +68,6 @@ class Cycling extends Workout {
 }
 const run1 = new Running([39, 12], 5.2, 24, 178);
 const cycling1 = new Cycling([39, 12], 27, 95, 523);
-console.log(run1, cycling1);
 
 ////////////////////////////////////////////////////////////////////////
 //APPLICATION
@@ -166,7 +165,7 @@ class App {
     //if workout running, create running object
     if (type === 'running') {
       const cadence = +inputCadence.value;
-      console.log(distance);
+
       //check if data is valid
       if (
         !validInputs(distance, duration, cadence) ||
@@ -191,7 +190,6 @@ class App {
 
     //add new object to workout array
     this.#workouts.push(workout);
-    console.log(this.#workouts);
 
     //hide form+clear input fields
     this._hideForm();
@@ -273,14 +271,12 @@ class App {
 
   _moveToPopup(e) {
     const workoutEl = e.target.closest('.workout');
-    console.log(workoutEl);
 
     if (!workoutEl) return;
 
     const workout = this.#workouts.find(
       work => work.id === workoutEl.dataset.id
     );
-    console.log(workout);
 
     this.#map.setView(workout.coords, this.#mapZoomLevel, {
       animate: true,
